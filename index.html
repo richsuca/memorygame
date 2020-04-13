@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script defer src="memory.js"> </script>
+    <style>
+        .twocol {
+            display: grid;
+            grid-template-columns: auto auto;
+        }
+        .wrapper {
+            width: 98%;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto auto;
+            row-gap: 15px;
+        }
+       .cards {
+            width: 60%;
+        }
+
+        .scoreboard {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+        }
+
+        .nextButton {
+            font-size:larger;
+        }
+    </style>
+</head>
+
+<body style="background-color: dimgrey;">
+    <div class="twocol">
+        <div class="wrapper">
+        </div>
+        <div class="scoreboard">
+            Scores:
+            <p class="player1"></p>
+            <p class="player2"></p>
+            <p><br></p>
+            <p class="whoseTurn"></p>
+            <p><br></p>
+            <input type="button" value="Next" class="nextButton">
+        </div>
+    </div>
+</body>
+
+</html>
