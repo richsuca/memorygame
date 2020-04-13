@@ -76,8 +76,7 @@ const wrapper = document.querySelector('.wrapper');
 const player1 = document.querySelector('.player1');
 const player2 = document.querySelector('.player2');
 const whoseTurn = document.querySelector('.whoseTurn');
-const nextButton = document.querySelector('.nextButton');
-nextButton.addEventListener('click', nextTurn);
+const time2Turn = 2000;
 
 let player1Name = '';
 let player2Name = '';
@@ -107,7 +106,14 @@ function flip() {
         secondCard = this.id;
         compareCards();
     }
+
     turnCount++;
+    
+    if ((player1Score + player2Score) === 26) {
+        gameOver();
+    } else if (turnCount > 2) {
+        setTimeout(nextTurn, time2Turn);
+    }
 }
 
 function nextTurn() {
@@ -120,6 +126,7 @@ function nextTurn() {
     }
 
     const first = document.getElementById(firstCard);    
+
     // if no match, then turn cards face down
     if (first.src.endsWith('blank.jpg') === false) {
         const second = document.getElementById(secondCard);
@@ -131,6 +138,8 @@ function nextTurn() {
     secondCard = undefined;
 
     turnCount = 1;
+
+    flashName();
 }
 
 function compareCards(){
@@ -148,12 +157,8 @@ function compareCards(){
         first.removeEventListener('click', flip)
         second.removeEventListener('click', flip);
 
-        if ((player1Score + player2Score) === 26) {
-            gameOver();
-        } else {
-            player1.textContent = `${player1Name}: ${player1Score}`;
-            player2.textContent = `${player2Name}: ${player2Score}`;
-        }
+        player1.textContent = `${player1Name}: ${player1Score}`;
+        player2.textContent = `${player2Name}: ${player2Score}`;
     }
 }
 
@@ -183,7 +188,15 @@ function shuffleCards() {
 
 function newGame() {
     player1Name = prompt('Name of Player 1');
+    if (player1Name === '') {
+        player1Name = 'Player 1';
+    }
+
     player2Name = prompt('Name of Player 2');
+    if (player2Name === '') {
+        player2Name = 'Player 2';
+    }
+
     player1Score = 0;
     player2Score = 0;
     firstCard = undefined;
@@ -193,7 +206,17 @@ function newGame() {
     player1.textContent = `${player1Name}: 0`;
     player2.textContent = `${player2Name}: 0`;
     whoseTurn.textContent = `${player1Name}'s turn`;
+    wrapper.innerHTML = '';
     shuffleCards();
+}
+
+function flashName() {
+    whoseTurn.className = 'showTurn';
+    setTimeout(unFlashName, 1000);
+}
+
+function unFlashName() {
+    whoseTurn.className = 'unShowTurn';
 }
 
 newGame();

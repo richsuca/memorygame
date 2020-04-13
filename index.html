@@ -11,11 +11,11 @@
         .wrapper {
             width: 98%;
             display: grid;
-            grid-template-columns: auto auto auto auto auto auto auto auto auto;
-            row-gap: 15px;
+            grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+            gap: 30px;
         }
        .cards {
-            width: 60%;
+            width: 85%;
         }
 
         .scoreboard {
@@ -23,8 +23,12 @@
             color: white;
         }
 
-        .nextButton {
-            font-size:larger;
+        .showTurn {
+            color: red;
+        }
+
+        .unShowTurn {
+            color: unset;
         }
     </style>
 </head>
@@ -39,8 +43,6 @@
             <p class="player2"></p>
             <p><br></p>
             <p class="whoseTurn"></p>
-            <p><br></p>
-            <input type="button" value="Next" class="nextButton">
         </div>
     </div>
 </body>
